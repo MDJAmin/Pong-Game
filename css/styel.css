@@ -59,4 +59,5 @@ button {
 button:hover {
   background-color: white;
   color: black;
+  scale: 1.1;
 }
