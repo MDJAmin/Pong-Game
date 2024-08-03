@@ -25,113 +25,103 @@ const downArrowPressed = { player1: false, player2: false };
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 
-keyDownHandler = (e) => {
-  switch (e.key) {
-    case "w":
-      upArrowPressed.player1 = true;
-      break;
-    case "s":
-      downArrowPressed.player1 = true;
-      break;
-    case "ArrowUp":
-      upArrowPressed.player2 = true;
-      break;
-    case "ArrowDown":
-      downArrowPressed.player2 = true;
-      break;
-  }
-};
+function keyDownHandler(e) {
+    switch (e.key) {
+        case "w":
+            upArrowPressed.player1 = true;
+            break;
+        case "s":
+            downArrowPressed.player1 = true;
+            break;
+        case "ArrowUp":
+            upArrowPressed.player2 = true;
+            break;
+        case "ArrowDown":
+            downArrowPressed.player2 = true;
+            break;
+    }
+}
 
-keyUpHandler = (e) => {
-  switch (e.key) {
-    case "w":
-      upArrowPressed.player1 = false;
-      break;
-    case "s":
-      downArrowPressed.player1 = false;
-      break;
-    case "ArrowUp":
-      upArrowPressed.player2 = false;
-      break;
-    case "ArrowDown":
-      downArrowPressed.player2 = false;
-      break;
-  }
-};
+function keyUpHandler(e) {
+    switch (e.key) {
+        case "w":
+            upArrowPressed.player1 = false;
+            break;
+        case "s":
+            downArrowPressed.player1 = false;
+            break;
+        case "ArrowUp":
+            upArrowPressed.player2 = false;
+            break;
+        case "ArrowDown":
+            downArrowPressed.player2 = false;
+            break;
+    }
+}
 
-movePaddles = () => {
-  if (upArrowPressed.player1 && paddle1Y > 0) {
-    paddle1Y -= paddleSpeed;
-  }
-  if (downArrowPressed.player1 && paddle1Y < canvas.height - paddleHeight) {
-    paddle1Y += paddleSpeed;
-  }
-  if (upArrowPressed.player2 && paddle2Y > 0) {
-    paddle2Y -= paddleSpeed;
-  }
-  if (downArrowPressed.player2 && paddle2Y < canvas.height - paddleHeight) {
-    paddle2Y += paddleSpeed;
-  }
-};
 
-moveBall = () => {
-  ballX += ballDX;
-  ballY += ballDY;
+// base the game
 
-  if (ballY + ballRadius > canvas.height || ballY - ballRadius < 0) {
-    ballDY = -ballDY;
-  }
+function movePaddles() {
+    if (upArrowPressed.player1 && paddle1Y > 0) {
+        paddle1Y -= paddleSpeed;
+    }
+    if (downArrowPressed.player1 && paddle1Y < canvas.height - paddleHeight) {
+        paddle1Y += paddleSpeed;
+    }
+    if (upArrowPressed.player2 && paddle2Y > 0) {
+        paddle2Y -= paddleSpeed;
+    }
+    if (downArrowPressed.player2 && paddle2Y < canvas.height - paddleHeight) {
+        paddle2Y += paddleSpeed;
+    }
+}
 
-  if (
-    ballX - ballRadius < paddleWidth &&
-    ballY > paddle1Y &&
-    ballY < paddle1Y + paddleHeight
-  ) {
+function moveBall() {
+    ballX += ballDX;
+    ballY += ballDY;
+
+    if (ballY + ballRadius > canvas.height || ballY - ballRadius < 0) {
+        ballDY = -ballDY;
+    }
+
+    if (ballX - ballRadius < paddleWidth && ballY > paddle1Y && ballY < paddle1Y + paddleHeight) {
+        ballDX = -ballDX;
+    } else if (ballX + ballRadius > canvas.width - paddleWidth && ballY > paddle2Y && ballY < paddle2Y + paddleHeight) {
+        ballDX = -ballDX;
+    }
+
+    if (ballX - ballRadius < 0 || ballX + ballRadius > canvas.width) {
+        resetBall();
+    }
+}
+
+function resetBall() {
+    ballX = canvas.width / 2;
+    ballY = canvas.height / 2;
     ballDX = -ballDX;
-  } else if (
-    ballX + ballRadius > canvas.width - paddleWidth &&
-    ballY > paddle2Y &&
-    ballY < paddle2Y + paddleHeight
-  ) {
-    ballDX = -ballDX;
-  }
+}
 
-  if (ballX - ballRadius < 0 || ballX + ballRadius > canvas.width) {
-    resetBall();
-  }
-};
+function drawPaddles() {
+    context.fillStyle = "#fff";
+    context.fillRect(0, paddle1Y, paddleWidth, paddleHeight);
+    context.fillRect(canvas.width - paddleWidth, paddle2Y, paddleWidth, paddleHeight);
+}
 
-resetBall = () => {
-  ballX = canvas.width / 2;
-  ballY = canvas.height / 2;
-  ballDX = -ballDX;
-};
+function drawBall() {
+    context.beginPath();
+    context.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+    context.fillStyle = "#fff";
+    context.fill();
+    context.closePath();
+}
 
-drawPaddles = () => {
-  context.fillStyle = "#fff";
-  context.fillRect(0, paddle1Y, paddleWidth, paddleHeight);
-  context.fillRect(
-    canvas.width - paddleWidth,
-    paddle2Y,
-    paddleWidth,
-    paddleHeight
-  );
-};
+function draw() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawPaddles();
+    drawBall();
+    movePaddles();
+    moveBall();
+}
 
-drawBall = () => {
-  context.beginPath();
-  context.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-  context.fillStyle = "#fff";
-  context.fill();
-  context.closePath();
-};
-
-draw = () => {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  drawPaddles();
-  drawBall();
-  movePaddles();
-  moveBall();
-};
-
-setInterval(draw, 10);
+setInterval(draw, 20);

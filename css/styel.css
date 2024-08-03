@@ -18,7 +18,7 @@ body {
     rgba(255, 255, 255, 1) 0%,
     rgba(0, 0, 0, 1) 78%
   );
-  animation: scaleGradient 20s infinite;
+  animation: scaleGradient 10s infinite;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -34,6 +34,25 @@ body {
   100% {
     background-size: 100%;
   }
+}
+
+.title {
+  width: fit-content;
+  padding-left: 1.5%;
+  margin-bottom: 2%;
+  font-size: 1.4rem;
+  letter-spacing: 15px;
+  font-weight: bolder !important;
+  border-bottom: 6px solid;
+  border-left: 5px solid;
+  border-right: 1px solid;
+  border-top: 1px solid;
+}
+.player-score {
+  display: flex;
+  width: 800px;
+  margin-bottom: 2%;
+  justify-content: space-between;
 }
 canvas {
   border: 3px solid #ffffff;
