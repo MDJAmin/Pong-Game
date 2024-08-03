@@ -18,7 +18,7 @@ body {
     rgba(255, 255, 255, 1) 0%,
     rgba(0, 0, 0, 1) 78%
   );
-  animation: scaleGradient 5s infinite;
+  animation: scaleGradient 20s infinite;
   background-repeat: no-repeat;
   background-position: center;
 }
