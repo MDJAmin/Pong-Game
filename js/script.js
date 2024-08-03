@@ -15,7 +15,7 @@ const paddleWidth = 10;
 const paddleHeight = 100;
 const ballRadius = 10;
 const paddleSpeed = 5;
-const ballSpeed = 4;
+const ballSpeed = 8;
 
 let paddle1Y = (canvas.height - paddleHeight) / 2;
 let paddle2Y = (canvas.height - paddleHeight) / 2;
