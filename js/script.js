@@ -113,16 +113,14 @@ function moveBall() {
 
   if (ballX - ballRadius < 0) {
     playerTwoScore++;
-    updateScores();
+    updateScores("playerTwo");
     resetBall();
   } else if (ballX + ballRadius > canvas.width) {
     playerOneScore++;
-    updateScores();
+    updateScores("playerOne");
     resetBall();
   }
 }
-
-//button functionality's
 
 function resetBall() {
   ballX = canvas.width / 2;
@@ -158,11 +156,26 @@ function draw() {
   moveBall();
 }
 
-function updateScores() {
+//Player's score
+
+function updateScores(scoringPlayer) {
   playerOneScoreEl.textContent = `Player One: ${playerOneScore}`;
   playerTwoScoreEl.textContent = `Player Two: ${playerTwoScore}`;
+  //set animation for scale to the player card score's
+  if (scoringPlayer === "playerOne") {
+    playerOneScoreEl.classList.add("scale-animate");
+    setTimeout(() => {
+      playerOneScoreEl.classList.remove("scale-animate");
+    }, 500);
+  } else if (scoringPlayer === "playerTwo") {
+    playerTwoScoreEl.classList.add("scale-animate");
+    setTimeout(() => {
+      playerTwoScoreEl.classList.remove("scale-animate");
+    }, 500);
+  }
 }
 
+//button's functionality's
 function startGame() {
   if (!isRunning) {
     gameInterval = setInterval(draw, 20);
