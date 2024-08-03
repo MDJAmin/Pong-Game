@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styel.css">
     <title>Pong Game</title>
 </head>
-
 <body>
     <p class="title">Pong Game</p>
     <div class="player-score">
-        <p>Player One: 0</p>
-        <p>Player Two: 0</p>
+        <p id="playerOneScore">Player One: 0</p>
+        <p id="playerTwoScore">Player Two: 0</p>
     </div>
     <canvas id="pongCanvas" width="800" height="400"></canvas>
     <div class="S-R-Buttons">
-        <button>Start</button>
-        <button>Stop</button>
-        <button>Restart</button>
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+        <button id="restartButton">Restart</button>
     </div>
-    <script src="js/script.js"> </script>
+    <script src="js/script.js"></script>
 </body>
-
 </html>
