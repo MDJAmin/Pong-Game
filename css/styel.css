@@ -14,11 +14,7 @@ body {
   height: 100vh;
   background-color: #000;
   margin: 0;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(0, 0, 0, 1) 78%
-  );
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 78%);
   animation: scaleGradient 10s infinite;
   background-repeat: no-repeat;
   background-position: center;
@@ -56,7 +52,6 @@ canvas {
   border-top: 1px solid;
   cursor: pointer;
   transition: all 0.5s;
-  user-select: none;
 }
 
 .title:hover {
@@ -73,8 +68,8 @@ canvas {
   width: 800px;
   margin-bottom: 2%;
   justify-content: space-between;
-  user-select: none;
 }
+
 .S-R-Buttons {
   display: flex;
   margin-top: 2%;
@@ -89,7 +84,6 @@ button {
   background-color: black;
   font-size: 1.6rem;
   transition: all 0.5s;
-  user-select: none;
 }
 
 button:hover {
@@ -123,10 +117,23 @@ button:hover {
   100% {
     transform: scale(1);
     background-color: rgba(255, 255, 255, 0.648);
-
   }
-}s
+}
 
 .scale-animate {
-  animation: 0.9s ease-in-out;
+  animation: scaleAnimation 0.5s ease-in-out;
+}
+
+.bx-pause-circle {
+  position: absolute;
+  font-size: 7em;
+  opacity: 0.5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none; 
+}
+
+.bx-pause-circle.visible {
+  display: block;
 }
