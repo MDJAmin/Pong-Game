@@ -128,5 +128,5 @@ button:hover {
 }s
 
 .scale-animate {
-  animation: scaleAnimation 0.9s ease-in-out;
+  animation: 0.9s ease-in-out;
 }
