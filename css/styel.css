@@ -56,6 +56,7 @@ canvas {
   border-top: 1px solid;
   cursor: pointer;
   transition: all 0.5s;
+  user-select: none;
 }
 
 .title:hover {
@@ -72,8 +73,8 @@ canvas {
   width: 800px;
   margin-bottom: 2%;
   justify-content: space-between;
+  user-select: none;
 }
-
 .S-R-Buttons {
   display: flex;
   margin-top: 2%;
@@ -88,6 +89,7 @@ button {
   background-color: black;
   font-size: 1.6rem;
   transition: all 0.5s;
+  user-select: none;
 }
 
 button:hover {
@@ -111,15 +113,20 @@ button:hover {
 @keyframes scaleAnimation {
   0% {
     transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.648);
   }
   50% {
     transform: scale(1.5);
+    background-color: rgba(0, 0, 0, 0.648);
+    color: white;
   }
   100% {
     transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.648);
+
   }
-}
+}s
 
 .scale-animate {
-  animation: scaleAnimation 0.5s ease-in-out;
+  animation: scaleAnimation 0.9s ease-in-out;
 }
