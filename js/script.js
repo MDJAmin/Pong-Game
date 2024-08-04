@@ -24,14 +24,19 @@ let ballY = canvas.height / 2;
 let ballDX = ballSpeed;
 let ballDY = ballSpeed;
 
-let playerOneScore = 0;
-let playerTwoScore = 0;
+let playerOneScore = parseInt(localStorage.getItem("playerOneScore")) || 0;
+let playerTwoScore = parseInt(localStorage.getItem("playerTwoScore")) || 0;
 let isRunning = false;
 let gameInterval;
 let isReset = false;
 
 const upArrowPressed = { player1: false, player2: false };
 const downArrowPressed = { player1: false, player2: false };
+
+
+// Update the score elements with the initial scores
+updateScores();
+
 
 // Event's for key's and btn
 document.addEventListener("keydown", keyDownHandler);
@@ -161,6 +166,13 @@ function draw() {
 function updateScores(scoringPlayer) {
   playerOneScoreEl.textContent = `Player One: ${playerOneScore}`;
   playerTwoScoreEl.textContent = `Player Two: ${playerTwoScore}`;
+
+  
+  // Save scores to local storage
+  localStorage.setItem("playerOneScore", playerOneScore);
+  localStorage.setItem("playerTwoScore", playerTwoScore);
+
+
   //set animation for scale to the player card score's
   if (scoringPlayer === "playerOne") {
     playerOneScoreEl.classList.add("scale-animate");
@@ -198,3 +210,4 @@ function restartGame() {
   paddle2Y = (canvas.height - paddleHeight) / 2;
   context.clearRect(0, 0, canvas.width, canvas.height);
 }
+
