@@ -9,6 +9,7 @@ const stopButton = document.getElementById("stopButton");
 const restartButton = document.getElementById("restartButton");
 const playerOneScoreEl = document.getElementById("playerOneScore");
 const playerTwoScoreEl = document.getElementById("playerTwoScore");
+const pauseIcon = document.getElementById("pauseIcon");
 
 // Variables
 const paddleWidth = 10;
@@ -187,12 +188,14 @@ function startGame() {
   if (!isRunning) {
     gameInterval = setInterval(draw, 20);
     isRunning = true;
+    pauseIcon.classList.remove("visible");
   }
 }
 
 function stopGame() {
   clearInterval(gameInterval);
   isRunning = false;
+  pauseIcon.classList.add("visible");
 }
 
 function restartGame() {
@@ -204,7 +207,7 @@ function restartGame() {
   paddle1Y = (canvas.height - paddleHeight) / 2;
   paddle2Y = (canvas.height - paddleHeight) / 2;
   context.clearRect(0, 0, canvas.width, canvas.height);
-
+  
   // Clear local storage
   localStorage.removeItem("playerOneScore");
   localStorage.removeItem("playerTwoScore");
