@@ -14,7 +14,11 @@ body {
   height: 100vh;
   background-color: #000;
   margin: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 78%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(0, 0, 0, 1) 78%
+  );
   animation: scaleGradient 10s infinite;
   background-repeat: no-repeat;
   background-position: center;
@@ -131,7 +135,7 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: none; 
+  display: none;
 }
 
 .bx-pause-circle.visible {

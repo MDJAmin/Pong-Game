@@ -207,7 +207,7 @@ function restartGame() {
   paddle1Y = (canvas.height - paddleHeight) / 2;
   paddle2Y = (canvas.height - paddleHeight) / 2;
   context.clearRect(0, 0, canvas.width, canvas.height);
-  
+
   // Clear local storage
   localStorage.removeItem("playerOneScore");
   localStorage.removeItem("playerTwoScore");
